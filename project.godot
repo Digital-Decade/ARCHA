@@ -12,9 +12,9 @@ config_version=5
 
 config/name="ARCHA"
 config/version="1.0.1"
-run/main_scene="res://ARCHA UI/ARCHA UI.tscn"
-config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://ARCHA UI/Branches/Splatool/resources/Splatoon icons/Curling.png"
+run/main_scene="uid://dss2upk86fobp"
+config/features=PackedStringArray("4.5", "Mobile")
+config/icon="res://Project_files/Projects/ΙOlder projects/ARCHA UI/Branches/Splatool/resources/Splatoon icons/Curling.png"
 
 [editor_plugins]
 

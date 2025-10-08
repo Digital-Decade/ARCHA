@@ -6,14 +6,24 @@
 /*/
 gitmultipush.bat
 gitmultiswap.bat
-!ARCHA UI/
-ARCHA UI/*/
-!ARCHA UI/*.*
-!ARCHA UI/Content panel display styles/
-!ARCHA UI/Branches/
-ARCHA UI/Branches/*/
-!ARCHA UI/Branches/Splatool/
+!addons/
+!Project files/
+Project files/*/
+!Project files/*.*
+!Project files/Projects
+Project files/Projects/*/
+!Project files/Projects/ARCHA
+!Project files/Projects/ARCHA/*
+!Project files/Projects/Osaka-app
+!Project files/Projects/Osaka-app/*
+!Project files/Projects/Basic console printer
+Project files/Projects/Basic console printer/*/
+!Project files/Projects/Basic console printer/*.*
 
 
 
 
+# We are explicitely setting directories off and then setting subdirectories on, and allowing files on each directory. iirc the gitignore applies the change in each line to the internal state, so if it's not explicitely mentionned it'll stay to the previous setting of allowing or not allowing that directory, hence being explicit.
+# I think it's because of the first exclusion of all directories at any level with /*/, we then have to manually renable subdirectories in each new directory we allow.
+# Well at least with this approach it ensure privacy and no chance of mishaps.
+# If I'm right, to allow everything under a directory, just directory/* it. It's gonna re set enable on everything that includes anything in the title, wether directory or file. Good.

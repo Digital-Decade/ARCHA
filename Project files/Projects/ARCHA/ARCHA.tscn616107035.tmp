@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=3 uid="uid://dss2upk86fobp"]
+
+[ext_resource type="Script" uid="uid://pye3oqrwo0js" path="res://Root/Projects/ARCHA UI/ARCHA.gd" id="1_fjlfo"]
+[ext_resource type="Script" uid="uid://ddtehl5ewvxxw" path="res://Root/Projects/Image Library Manager/LocaRu.gd" id="2_r6d5h"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fjlfo")
+
+[node name="Imported modules" type="Node" parent="."]
+
+[node name="LocaRu" type="Node" parent="Imported modules"]
+script = ExtResource("2_r6d5h")
+
+[node name="UI Root" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI Root"]
+layout_mode = 2
+
+[node name="Top bar" type="PanelContainer" parent="UI Root/VBox"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Root/VBox/Top bar"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="UI Root/VBox/Top bar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[center][b]ARCHA"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Root/VBox/Top bar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Branches" type="TabBar" parent="UI Root/VBox/Top bar/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+clip_tabs = false
+deselect_enabled = true
+
+[node name="Main section" type="HSplitContainer" parent="UI Root/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = -300
+
+[node name="Content panel" type="PanelContainer" parent="UI Root/VBox/Main section"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Scroll" type="ScrollContainer" parent="UI Root/VBox/Main section/Content panel"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UI Root/VBox/Main section/Content panel/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Side panel" type="PanelContainer" parent="UI Root/VBox/Main section"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="UI Root/VBox/Main section/Side panel"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UI Root/VBox/Main section/Side panel/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="UI Root/VBox/Main section/Side panel/Scroll/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Status bar" type="Panel" parent="UI Root/VBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Root/VBox/Status bar"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 30.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI Root/VBox/Status bar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI Root/VBox/Status bar/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 13
+text = "Text only status bar for now"
+vertical_alignment = 1
+
+[connection signal="tab_clicked" from="UI Root/VBox/Top bar/VBoxContainer/HBoxContainer/Branches" to="." method="_on_branches_tab_clicked"]

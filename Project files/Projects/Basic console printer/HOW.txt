@@ -1,0 +1,3 @@
+Double click the Basic console printer.tscn scene to open it.
+Then drag and drop one of the "Personal calculation scripts" to attach it to the main node in the scene.
+Now you can run the scene (Run Current Scene) and it'll run your script.
