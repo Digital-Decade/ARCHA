@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4tedupa8nfjs"]
-
-[ext_resource type="Script" uid="uid://7r5ex1gf6rdm" path="res://Project files/Projects/ARCHA/Algorithms & functions/LocaRu algorithms/FilterNSort/filtersortarrays.gd" id="1_cu75h"]
-
-[node name="Attach script to run here" type="Node"]
-script = ExtResource("1_cu75h")
