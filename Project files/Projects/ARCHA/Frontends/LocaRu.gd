@@ -81,7 +81,7 @@ func locaru_parameters() -> Array[NamedControl]:
 	
 	return params
 
-var locaru_grid
+var locaru_grid:Node
 var selected_path:String
 var items_per_page:int
 var page_number:int
@@ -90,7 +90,7 @@ var ranking_algorithm
 var sorting_data_path:String
 var max_iterations:int
 var archa_status_bar_hack:Node
-func rescan_param_values(): 
+func rescan_param_values() -> void: 
 	locaru_grid = get_node("../../UI Root/VBox/Main section/Content panel/Scroll/Margin/").get_child(0)
 	selected_path = get_node("../../UI Root/VBox/Main section/Side panel/Scroll/Margin/VBox/").get_child(0).get_child(1).text
 	items_per_page = get_node("../../UI Root/VBox/Main section/Side panel/Scroll/Margin/VBox/").get_child(2).get_child(1).value
@@ -114,11 +114,11 @@ var temp_index_loser:String
 var global_indices_on_this_page:Array[int]
 var ranking_iterations_running:bool = false
 
-var rank = Ranking.new()
-var threads = HyperThreading.new()
+var rank := Ranking.new()
+var threads := HyperThreading.new()
 
 
-var page_slicing:HyperThreading = HyperThreading.new()
+var page_slicing := HyperThreading.new()
 func page_slicing_thread_launcher(ranked_files:Array[Ranking.ScoredItem], iteration_number) -> void:
 	page_slicing.launch(slice_page_from_ranking, true, [ranked_files, iteration_number])
 
@@ -177,11 +177,11 @@ func _on_last_sort_complete() -> void:
 func redraw_item_list(list_to_update:ItemList, item_names:Array[String] = []) -> void: # Hardcoded to generate list without thumbnails, for thumbnails, edit ItemList object after the fact.
 	list_to_update.clear()
 	resize_list_icons(item_display_size, locaru_grid)
-	for item_name in item_names:
+	for item_name:String in item_names:
 		list_to_update.add_item(item_name, locaru_cache.fallback_texture)
 	locaru_cache.launch_async_thumbnail_fetch(global_indices_on_this_page)
 
-func resize_list_icons(scale, list_to_update:Node = locaru_grid) -> void:
+func resize_list_icons(scale:float, list_to_update:Node = locaru_grid) -> void:
 	item_display_size = scale
 	var scaled_size:float = 100.0 + 900.0 * Curves.exponent_flipped_clipped(scale, 10.0, 0.995) # Replace with e exponent function probably.
 	#scaled_size = 100 + 900*scale # Linear scale method for comparison (shit)
@@ -205,7 +205,7 @@ func regenerate_global_index(_ranking_algorithm, data_to_sort_against) -> void:
 		2: threads.launch(rank.negative_bradley_terry, true, [data_to_sort_against, files_names, max_iterations])
 
 func slice_page_from_ranking(breaker:Breaker, ranked_files:Array[Ranking.ScoredItem], iteration_number) -> void:
-	var status_bar_text = "Current iteration: " + str(iteration_number+1 if iteration_number != -1 else max_iterations) + "/" + str(max_iterations)
+	var status_bar_text := "Current iteration: " + str(iteration_number+1 if iteration_number != -1 else max_iterations) + "/" + str(max_iterations)
 	call_deferred("emit_signal", "StatusBarMessage", status_bar_text)
 	while breaker.check_for_break_request() == false:
 		var new_array:Array[int]

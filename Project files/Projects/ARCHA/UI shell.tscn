@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dss2upk86fobp"]
+[gd_scene format=3 uid="uid://dss2upk86fobp"]
 
-[ext_resource type="Script" uid="uid://pye3oqrwo0js" path="res://Project_files/Projects/ARCHA/UI handler.gd" id="1_52nlf"]
-[ext_resource type="Script" uid="uid://cwevtrenfi0qt" path="res://Project_files/Projects/ARCHA/Frontends/Clear UI.gd" id="2_hkbc5"]
-[ext_resource type="Script" uid="uid://ddtehl5ewvxxw" path="res://Project_files/Projects/ARCHA/Frontends/LocaRu.gd" id="2_ipf50"]
+[ext_resource type="Script" uid="uid://pye3oqrwo0js" path="res://Project files/Projects/ARCHA/UI handler.gd" id="1_52nlf"]
+[ext_resource type="Script" uid="uid://cwevtrenfi0qt" path="res://Project files/Projects/ARCHA/Frontends/Clear UI.gd" id="2_hkbc5"]
+[ext_resource type="Script" uid="uid://ddtehl5ewvxxw" path="res://Project files/Projects/ARCHA/Frontends/LocaRu.gd" id="2_ipf50"]
 
-[node name="Root" type="Control"]
+[node name="Root" type="Control" unique_id=74270458 node_paths=PackedStringArray("frontends", "tab_bar", "content_panel", "parameters_panel", "status_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,18 +12,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_52nlf")
+frontends = [NodePath("Shown frontends/Clear UI"), NodePath("Shown frontends/LocaRu")]
+tab_bar = NodePath("UI Root/VBox/Top bar/VBox/HBox/Tabs")
+content_panel = NodePath("UI Root/VBox/Main section/Content panel/Scroll/Margin")
+parameters_panel = NodePath("UI Root/VBox/Main section/Side panel/Scroll/Margin/VBox")
+status_bar = NodePath("UI Root/VBox/Status bar/HBoxContainer/MarginContainer/RichTextLabel")
 
-[node name="Test" type="Node" parent="."]
+[node name="Test" type="Node" parent="." unique_id=1236362332]
 
-[node name="Shown frontends" type="Node" parent="."]
+[node name="Shown frontends" type="Node" parent="." unique_id=1320644961]
 
-[node name="Clear UI" type="Node" parent="Shown frontends"]
+[node name="Clear UI" type="Node" parent="Shown frontends" unique_id=1700104382]
 script = ExtResource("2_hkbc5")
 
-[node name="LocaRu" type="Node" parent="Shown frontends"]
+[node name="LocaRu" type="Node" parent="Shown frontends" unique_id=1106720993]
 script = ExtResource("2_ipf50")
 
-[node name="UI Root" type="PanelContainer" parent="."]
+[node name="UI Root" type="PanelContainer" parent="." unique_id=779563866]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,62 +36,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="UI Root"]
+[node name="VBox" type="VBoxContainer" parent="UI Root" unique_id=1265146343]
 layout_mode = 2
 
-[node name="Top bar" type="PanelContainer" parent="UI Root/VBox"]
+[node name="Top bar" type="PanelContainer" parent="UI Root/VBox" unique_id=238044412]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="VBox" type="VBoxContainer" parent="UI Root/VBox/Top bar"]
+[node name="VBox" type="VBoxContainer" parent="UI Root/VBox/Top bar" unique_id=1505636074]
 layout_mode = 2
 
-[node name="Title" type="RichTextLabel" parent="UI Root/VBox/Top bar/VBox"]
+[node name="Title" type="RichTextLabel" parent="UI Root/VBox/Top bar/VBox" unique_id=1653687769]
 layout_mode = 2
 size_flags_vertical = 0
 bbcode_enabled = true
 text = "[center][b]ARCHA"
 fit_content = true
 
-[node name="HBox" type="HBoxContainer" parent="UI Root/VBox/Top bar/VBox"]
+[node name="HBox" type="HBoxContainer" parent="UI Root/VBox/Top bar/VBox" unique_id=462021494]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Tabs" type="TabBar" parent="UI Root/VBox/Top bar/VBox/HBox"]
+[node name="Tabs" type="TabBar" parent="UI Root/VBox/Top bar/VBox/HBox" unique_id=42242293]
 layout_mode = 2
 size_flags_horizontal = 6
 clip_tabs = false
 deselect_enabled = true
 
-[node name="Main section" type="HSplitContainer" parent="UI Root/VBox"]
+[node name="Main section" type="HSplitContainer" parent="UI Root/VBox" unique_id=825026420]
 layout_mode = 2
 size_flags_vertical = 3
+split_offsets = PackedInt32Array(-300)
 split_offset = -300
 
-[node name="Content panel" type="PanelContainer" parent="UI Root/VBox/Main section"]
+[node name="Content panel" type="PanelContainer" parent="UI Root/VBox/Main section" unique_id=1801443042]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Scroll" type="ScrollContainer" parent="UI Root/VBox/Main section/Content panel"]
+[node name="Scroll" type="ScrollContainer" parent="UI Root/VBox/Main section/Content panel" unique_id=2141220593]
 layout_mode = 2
 
-[node name="Margin" type="MarginContainer" parent="UI Root/VBox/Main section/Content panel/Scroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Side panel" type="PanelContainer" parent="UI Root/VBox/Main section"]
-layout_mode = 2
-
-[node name="Scroll" type="ScrollContainer" parent="UI Root/VBox/Main section/Side panel"]
-layout_mode = 2
-
-[node name="Margin" type="MarginContainer" parent="UI Root/VBox/Main section/Side panel/Scroll"]
+[node name="Margin" type="MarginContainer" parent="UI Root/VBox/Main section/Content panel/Scroll" unique_id=279930944]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -95,28 +86,43 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBox" type="VBoxContainer" parent="UI Root/VBox/Main section/Side panel/Scroll/Margin"]
+[node name="Side panel" type="PanelContainer" parent="UI Root/VBox/Main section" unique_id=949162222]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="UI Root/VBox/Main section/Side panel" unique_id=1238315390]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UI Root/VBox/Main section/Side panel/Scroll" unique_id=2004684238]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="UI Root/VBox/Main section/Side panel/Scroll/Margin" unique_id=1747482184]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="Status bar" type="Panel" parent="UI Root/VBox"]
+[node name="Status bar" type="Panel" parent="UI Root/VBox" unique_id=2060900670]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI Root/VBox/Status bar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Root/VBox/Status bar" unique_id=245054311]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 30.0
 
-[node name="MarginContainer" type="MarginContainer" parent="UI Root/VBox/Status bar/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI Root/VBox/Status bar/HBoxContainer" unique_id=950292421]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI Root/VBox/Status bar/HBoxContainer/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI Root/VBox/Status bar/HBoxContainer/MarginContainer" unique_id=2045778456]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 13

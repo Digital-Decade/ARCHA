@@ -12,20 +12,20 @@ func _ready() -> void: ThumbnailLoaded.connect(dummy)
 
 
 
-var img = ImageTools.new()
+var img := ImageTools.new()
 
 var cached_directory_path:String = ""
 var cached_items:Array[PreloadedFile] = []
 var cached_items_count:int = 0
 var currently_displayed:Array[int]
-var fallback_texture = img.fallback_texture
-func _init(folder_path) -> void:
+var fallback_texture:Texture = img.fallback_texture
+func _init(folder_path:String) -> void:
 	cached_items.clear()
 	cached_directory_path = folder_path
 	var dir = DirAccess.open(folder_path)
 	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	var file_counter = 0
+	var file_name := dir.get_next()
+	var file_counter := 0
 	while file_name != "":
 		cached_items.append(PreloadedFile.new(file_name))
 		file_counter += 1
@@ -51,14 +51,14 @@ class PreloadedFile:
 var thread = MultiThreading.new()
 
 
-func launch_async_thumbnail_fetch(indices):
+func launch_async_thumbnail_fetch(indices:Array[int]):
 	currently_displayed = indices
 	thread.launch(query_cache_threaded, true, [])
 
 func query_cache_threaded(breaker:Breaker) -> void:
-	for global_index in currently_displayed:
+	for global_index:int in currently_displayed:
 		if breaker.check_for_break_request(): break
-		var thumbnail
+		var thumbnail:Texture2D
 		match cached_items[global_index].thumbnail:
 			null: 
 				thumbnail = ImageTools.decode_image(cached_directory_path + cached_items[global_index].file_name)

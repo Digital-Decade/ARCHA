@@ -1,9 +1,0 @@
-Only for "data manipulation" that isn't directly done from the user's action to being directly stored onto the disk.
-It's basically for internal data manipulation with multiple layers, not a "descision" that can be exposed to the user for choosing.
-"Algorithms". That's what they are.
-It's meant to change the way that things are retrieved an displayed from storage back to the user.
-From there, from what is presented, the user can make a simpler choice.
-The thing really is that the user cannot code himself, and shouldn't have to.
-Algorithms are for storage to user.
-When it's user to storage, it should be simple buttons and choices only.
-The way that progress is made is by the cummulative piling of user actions enabled by these algorithms that present new relevant choices to be made.

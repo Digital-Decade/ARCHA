@@ -1,7 +1,7 @@
 extends Node
 class_name UI
 
-var tab_name:String
+static var tab_name:String
 var content_panel:Node
 var parameters:Array = []
 func _init(_tab_name:String, _parameters:Array[NamedControl], _content_panel) -> void:

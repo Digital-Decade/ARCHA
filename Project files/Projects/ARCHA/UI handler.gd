@@ -10,12 +10,12 @@ extends Node
 
 
 
-@onready var frontends:Array[Node] = get_node("Shown frontends").get_children() # Probably best to select which UIs to show via the code
+@export var frontends:Array[Node]
 
-@onready var tab_bar:Node = get_node("UI Root/VBox/Top bar/VBox/HBox/Tabs")
-@onready var content_panel:Node = get_node("UI Root/VBox/Main section/Content panel/Scroll/Margin")
-@onready var parameters_panel:Node = get_node("UI Root/VBox/Main section/Side panel/Scroll/Margin/VBox")
-@onready var status_bar:Node = get_node("UI Root/VBox/Status bar/HBoxContainer/MarginContainer/RichTextLabel")
+@export var tab_bar:Node 
+@export var content_panel:Node
+@export var parameters_panel:Node
+@export var status_bar:Node
 
 #@onready var loaded_resources = [load("res://Project_files/Projects/ARCHA/Access/Load image.gd")]
 
@@ -44,6 +44,7 @@ func draw_panels(tab_index) -> void: # Perhaps this should only append a ready m
 	
 	for child in parameters_panel.get_children():
 		parameters_panel.remove_child(child)
+	
 	
 	content_panel.add_child(
 		frontends[tab_index].content_panel
