@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://tjbodod7axrh"]
+
+[ext_resource type="Script" uid="uid://bi5egp8p3pk75" path="res://Scenes/Item list/Item list.gd" id="1_c2lxy"]
+[ext_resource type="Texture2D" uid="uid://bg377l6j4b7n2" path="res://icon.svg" id="1_muvf2"]
+
+[node name="ItemList" type="ItemList" unique_id=1925045619]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+item_count = 2
+max_columns = 0
+fixed_column_width = 100
+icon_mode = 0
+fixed_icon_size = Vector2i(100, 100)
+item_0/text = "jsjdhd"
+item_0/icon = ExtResource("1_muvf2")
+item_1/text = "jsjshdh"
+script = ExtResource("1_c2lxy")
