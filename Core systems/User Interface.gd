@@ -1,7 +1,7 @@
 extends Node
 class_name UI
 
-const wip_ui = preload("res://Scenes/Item list/Item list.tscn")
+const wip_ui = preload("res://Scenes/Workspace/Workspace.tscn")
 
 static func run(host: Node):
 	var wip_ui_instance = wip_ui.instantiate()

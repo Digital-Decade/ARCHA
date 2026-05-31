@@ -15,6 +15,10 @@ run/main_scene="res://Host.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Orchestrator="*uid://by40u7hl134rj"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
