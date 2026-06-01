@@ -18,6 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 Orchestrator="*uid://by40u7hl134rj"
+PerceptualScaling="*uid://e57p2jw2vslv"
+
+[display]
+
+window/size/viewport_width=11520
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
+window/handheld/orientation=6
 
 [physics]
 
