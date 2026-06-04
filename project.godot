@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="ARCHA"
-run/main_scene="res://Host.tscn"
+run/main_scene="uid://cnx4kecq2bu1x"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Orchestrator="*uid://by40u7hl134rj"
 
 [physics]
 
