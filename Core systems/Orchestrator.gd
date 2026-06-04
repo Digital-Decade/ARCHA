@@ -1,6 +1,11 @@
 extends Node
 
 
+# Todo:
+# Graph Reset Pass: Clearing out old text values back to null after execution so a composition can be triggered multiple times without getting clogged by stale data.
+# Performance Logger: Benchmarking the workers to see exactly how many microseconds they take to execute on their background threads.
+
+
 const TYPE_REGISTRY : Dictionary = {
 	"text_input": preload("res://Nodes/Text input.gd"),
 	"string_uppercase": preload("res://Nodes/String uppercase.gd"),
