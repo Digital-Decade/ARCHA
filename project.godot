@@ -22,9 +22,8 @@ PerceptualScaling="*uid://e57p2jw2vslv"
 
 [display]
 
-window/size/viewport_width=11520
 window/stretch/mode="canvas_items"
-window/stretch/aspect="ignore"
+window/stretch/aspect="expand"
 window/handheld/orientation=6
 
 [physics]

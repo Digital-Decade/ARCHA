@@ -10,10 +10,10 @@ func set_input(port: int, value: Variant, trace_id: String, hop_count: int) -> v
 	# Pass the trace metadata onward so the orchestrator can track the lifecycle
 	emit_output(0, result, trace_id, hop_count)
 
-func execute(port, value):
+func execute(_port, _value):
 	pass
 
-func emit_output(port: int, value: Variant, trace_id: String, hop_count: int) -> void:
+func emit_output(port: int, value: Variant, trace_id: String,_hop_count: int) -> void:
 	var packet = Packet.new()
 	packet.sender_id = node_id
 	packet.output_port = port

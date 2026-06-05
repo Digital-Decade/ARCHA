@@ -4,8 +4,8 @@ extends Node
 var routing_table: Dictionary = {}
 
 func dispatch(packet: Packet) -> void:
-	var target_id
-	var target_port
+	var target_id = 0
+	var target_port = 0
 	_deliver_locally(target_id, target_port, packet)
 
 func _deliver_locally(target_id: String, target_port: int, packet: Packet) -> void:
