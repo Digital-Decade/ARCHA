@@ -19,10 +19,8 @@ var queue_mutex: Mutex = Mutex.new()
 func _ready() -> void:
 	var raw_data := _load_composition_file("res://Compositions/Branching composition.json")
 	if raw_data.is_empty():
-		printerr("❌ ENGINE ERROR: Composition file was empty or not found!")
 		return
 	
-	print("✅ STEP 1: JSON loaded successfully. Compiling...")
 	_compile_graph(raw_data)
 	
 	var context := GraphRunContext.new()
@@ -44,8 +42,6 @@ func _ready() -> void:
 			})
 			spawn_count += 1
 	queue_mutex.unlock()
-	
-	print("✅ STEP 2: Graph compiled. Found ", spawn_count, " root entry points.")
 	
 	for i in range(spawn_count):
 		WorkerThreadPool.add_task(_thread_worker)

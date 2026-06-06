@@ -15,6 +15,10 @@ run/main_scene="uid://cnx4kecq2bu1x"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

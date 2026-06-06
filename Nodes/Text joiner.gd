@@ -3,7 +3,7 @@ extends RefCounted
 const INPUTS = ["text_a", "text_b"]
 const OUTPUTS = ["joined_text"]
 
-func execute(inputs: Dictionary) -> Dictionary:
+static func execute(inputs: Dictionary) -> Dictionary:
 	var a = inputs.get("text_a", "")
 	var b = inputs.get("text_b", "")
 	
