@@ -1,5 +1,7 @@
 extends Node
 
+@export var rack_container: Node
+
 func _ready() -> void:
 	get_window().content_scale_factor = TestData.content_scale
 	
@@ -12,8 +14,6 @@ func _ready() -> void:
 	for i in range(5):
 		item_list.item_list.add_item(str(i))
 	
-	
 	var rack := Rack.new()
 	add_child(rack)
-
-	
+	rack.reload(rack_container)
