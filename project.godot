@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ARCHA"
-run/main_scene="uid://cnx4kecq2bu1x"
+run/main_scene="uid://ru0sakxsvrm1"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
