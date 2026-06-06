@@ -5,12 +5,14 @@ const BASELINE_DPI: float = 96.0
 const BASELINE_DISTANCE_CM: float = 60.0 # Typical desktop monitor distance
 
 func _ready() -> void:
-	adjust_perceptual_scale()
+	calculate_perceptual_scale()
 
-func adjust_perceptual_scale() -> void:
-	# 1. Gather hardware realities
+func calculate_perceptual_scale() -> void:
+	print("--- Calculating perceptual scale ---")
+	
 	var raw_dpi: float = DisplayServer.screen_get_dpi()
 	var current_os = OS.get_name()
+	print("OS: ", current_os, " | Display DPI: ", raw_dpi)
 	
 	# Fallback guardrail: If a desktop driver reports 0 DPI, default to standard desktop density
 	if raw_dpi <= 0:
@@ -38,10 +40,7 @@ func adjust_perceptual_scale() -> void:
 	final_perceptual_scale = clamp(final_perceptual_scale, 0.75, 4.0)
 	
 	# Apply directly to Godot's vector canvas engine
-	get_window().content_scale_factor = final_perceptual_scale
+	Hooks.new().set_content_scale(self, final_perceptual_scale)
 	
-	# Debug tracking log
-	print("--- Perceptual Scale Calculated ---")
-	print("Device Detected: ", current_os, " | Hardware DPI: ", raw_dpi)
 	print("Estimated Distance: ", estimated_distance_cm, "cm")
 	print("Applied Window Scale Factor: ", final_perceptual_scale)
