@@ -2,7 +2,7 @@
 	"nodes": {
 		"1": { 
 			"worker_type": "text_input",
-			"values": { "text_out": "hello world!" }
+			"values": { "text": "hello world!" }
 		},
 		"2": { "worker_type": "string_uppercase" },
 		"3": { "worker_type": "console_print" }

@@ -1,7 +1,11 @@
 extends RefCounted
 
-const INPUTS = []
-const OUTPUTS = ["text_out"]
+const INPUTS = ["text"]
+const OUTPUTS = ["text"]
 
-func execute(_inputs: Dictionary) -> Dictionary:
-	return {}
+func execute(inputs: Dictionary) -> Dictionary:
+	var user_string = inputs.get("text", "")
+	
+	return {
+		"text": user_string
+	}

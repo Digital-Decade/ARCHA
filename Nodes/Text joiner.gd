@@ -4,6 +4,9 @@ const INPUTS = ["text_a", "text_b"]
 const OUTPUTS = ["joined_text"]
 
 func execute(inputs: Dictionary) -> Dictionary:
+	var a = inputs.get("text_a", "")
+	var b = inputs.get("text_b", "")
+	
 	return {
-		"joined_text": inputs["text_a"] + inputs["text_b"]
+		"joined_text": str(a) + str(b)
 	}

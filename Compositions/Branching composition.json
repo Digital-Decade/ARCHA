@@ -2,12 +2,12 @@
 	"nodes": {
 		"1": { 
 			"worker_type": "text_input",
-			"values": { "text_out": "hello" }
+			"values": { "text": "hello" }
 		},
 		"2": { "worker_type": "string_uppercase" },
 		"5": { 
 			"worker_type": "text_input",
-			"values": { "text_out": " world!" }
+			"values": { "text": " world!" }
 		},
 		"4": { "worker_type": "text_join" },
 		"3": { "worker_type": "console_print" }
