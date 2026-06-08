@@ -7,7 +7,7 @@ func reload(rack_container: Node, nodules: Array[Script]) -> void:
 	for nodule in nodules:
 		var panel := VBoxContainer.new()
 		panel.custom_minimum_size = Vector2i(200, 0)
-		var rows: Array = get_nodule_panel(nodule)
+		var rows: Array = grab_nodule_panel(nodule)
 		for row in rows:
 			panel.add_child(row)
 		rack.add_child(panel)
@@ -15,5 +15,5 @@ func reload(rack_container: Node, nodules: Array[Script]) -> void:
 		child.queue_free()
 	rack_container.add_child(rack)
 
-func get_nodule_panel(nodule: Script) -> Array:
+func grab_nodule_panel(nodule: Script) -> Array:
 	return nodule.ui()
