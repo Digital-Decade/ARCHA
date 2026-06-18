@@ -1,17 +1,16 @@
 extends Nodule
 
-static func ui() -> Array:
-	var rows: Array = []
-	
+static func widget() -> Array:
 	var text_label := RichTextLabel.new()
 	text_label.text = "test"
 	text_label.fit_content = true
-	rows.append(text_label)
 	
-	return rows
+	return [text_label]
 
-static func run(text: String) -> String:
+static func function(packet: Packet) -> Packet:
+	var text: String = packet.get_input(0)
 	print("--- Prototype success ---")
 	print(text)
-	return text
+	packet.set_output(0, text)
+	return packet
 	

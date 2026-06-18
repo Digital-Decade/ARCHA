@@ -1,11 +1,13 @@
 extends Node
 
-@export var rack_container: Node
-@export var panels: Array[Script]
+@export var drawer_container: Node
+@export var widgets: Array[Script]
+var drawer: Node
+
+func temporary_hotglue():
+	get_window().content_scale_factor = TestData.content_scale
 
 func _ready() -> void:
-	get_window().content_scale_factor = TestData.content_scale
-	
-	var rack := Rack.new()
-	add_child(rack)
-	rack.reload(rack_container, panels)
+	temporary_hotglue()
+	drawer = Drawer.create(drawer_container)
+	Drawer.refresh(drawer, widgets)

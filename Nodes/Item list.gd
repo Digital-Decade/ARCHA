@@ -1,6 +1,4 @@
 extends Nodule
 
-static func ui() -> Array:
-	var rows: Array = []
-	
-	return rows
+static func interface():
+	pass

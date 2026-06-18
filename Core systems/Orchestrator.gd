@@ -5,14 +5,6 @@ extends Node
 # Todo:
 # Performance Logger: Benchmarking the workers to see exactly how many microseconds they take to execute on their background threads.
 
-
-const TYPE_REGISTRY : Dictionary = {
-	"text_input": preload("res://Nodes/Text input.gd"),
-	"string_uppercase": preload("res://Nodes/String uppercase.gd"),
-	"console_print": preload("res://Nodes/Console print.gd"),
-	"text_join": preload("res://Nodes/Text joiner.gd")
-}
-
 var _compiled_graph: Dictionary = {}
 var task_queue: Array[Dictionary] = []
 var queue_mutex: Mutex = Mutex.new()
