@@ -1,8 +1,10 @@
 extends Resource
 class_name Nodule
 
-static func interface(ports: Ports):
+@warning_ignore("unused_parameter")
+static func interface(ports: Ports, _widget: Widget) -> void:
 	pass
 
-static func function(packet: Packet) -> Packet:
-	return packet
+@warning_ignore("unused_parameter")
+static func function(packet: Packet) -> void:
+	pass

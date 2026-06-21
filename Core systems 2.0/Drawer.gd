@@ -6,12 +6,14 @@ static func create(drawer_container: Node) -> Node:
 	drawer_container.add_child(drawer)
 	return drawer
 
+
+
 static func add_widget(drawer: Node, nodule: Script) -> void:
-	var widget := VBoxContainer.new()
-	widget.custom_minimum_size = Vector2i(200, 0)
-	for strip in nodule.widget():
-		widget.add_child(strip)
-	drawer.add_child(widget)
+	var ports := Ports.new()
+	var widget := Widget.new()
+	nodule.interface(ports, widget)
+	if widget._layout != null:
+		drawer.add_child(widget._layout)
 	
 static func drop_widget(drawer: Node, index_of_target: int) -> void:
 	drawer.get_child(index_of_target).queue_free()

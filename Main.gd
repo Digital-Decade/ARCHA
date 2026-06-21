@@ -1,7 +1,7 @@
 extends Node
 
 @export var drawer_container: Node
-@export var widgets: Array[Script]
+@export var composition: Composition
 var drawer: Node
 
 func temporary_hotglue():
@@ -9,5 +9,6 @@ func temporary_hotglue():
 
 func _ready() -> void:
 	temporary_hotglue()
+	var widgets = composition.nodes
 	drawer = Drawer.create(drawer_container)
 	Drawer.refresh(drawer, widgets)

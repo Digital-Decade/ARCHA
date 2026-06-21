@@ -1,31 +1,45 @@
 extends RefCounted
 class_name Widget
 
-var _element_layout: Array = []
+var _layout: VBoxContainer
+var adresses: Array[PropertyAddress] = []
 
-func fetch() -> VBoxContainer:
-	if _element_layout.size() > 0:
-		var widget := VBoxContainer.new()
-		for element_stripe in _element_layout:
-			var stripe := HBoxContainer.new()
-			if typeof(element_stripe) == TYPE_ARRAY:
-				for element in element_stripe:
-					stripe.add_child(element)
-			elif typeof(element_stripe) == TYPE_NODE_PATH:
-				stripe.add_child(element_stripe)
-			widget.add_child(stripe)
-		return widget
+func create(minimum_size: int = 200) -> void:
+	if _layout == null:
+		_layout = VBoxContainer.new()
+		_layout.custom_minimum_size = Vector2i(minimum_size, 0)
+
+func append_custom_controls(node: Node, size: int = 1) -> void:
+	if _layout == null:
+		push_error("Trying to append controls on widget that wasn't created with \"widget.create()\"")
+		return
+	if is_instance_of(node, HBoxContainer):
+		_layout.add_child(node)
 	else:
-		return null
+		var hbox := HBoxContainer.new()
+		hbox.custom_minimum_size = Vector2i(0, 50*size)
+		hbox.add_child(node)
+		_layout.add_child(hbox)
+	
 
-func add_custom_stripe(...elements: Array) -> void:
-	for element in elements:
-		if typeof(element) == TYPE_NODE_PATH:
-			pass
-		elif typeof(element) == TYPE_STRING:
-			pass
+func register_ui_property(object_reference: Node, property_name: StringName, change_signal: StringName) -> PropertyAddress:
+	var address := PropertyAddress.new(object_reference, property_name)
+	adresses.append(address)
+	object_reference.connect(change_signal, call_orchestrator)
+	return address
 
-func add_button(label: String) -> void:
-	var button := Button.new()
-	button.text = label
-	_element_layout.append(button)
+func call_orchestrator():
+	pass
+
+class PropertyAddress:
+	var _object_reference: Node
+	var _property_name: StringName
+	func _init(
+		object_reference: Node, 
+		property_name: StringName
+	) -> void:
+		_object_reference = object_reference
+		_property_name = property_name
+	
+	func bind_to(port: Ports.Port) -> void:
+		pass
