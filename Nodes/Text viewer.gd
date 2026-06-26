@@ -11,7 +11,7 @@ static func interface(ports: Ports, widget: Widget) -> void:
 	
 	ports.open_input(&"Text", TYPE_STRING)
 	var output := ports.open_output(&"Text", TYPE_STRING)
-	widget.set_ui_receiver(output, text_label, &"text")
+	ports.create_ui_receiver(output, text_label, &"text")
 	
 	return
 

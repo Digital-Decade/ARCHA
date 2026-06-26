@@ -2,19 +2,40 @@
 
 [ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://Core systems 2.0/Composition.gd" id="1_c886k"]
 [ext_resource type="Script" uid="uid://27ghg2gq13d2" path="res://Core systems 2.0/Connections.gd" id="1_o4rxf"]
+[ext_resource type="Script" uid="uid://ckr8jwkqi0dsp" path="res://Core systems 2.0/Address.gd" id="2_ho8d6"]
 [ext_resource type="Script" uid="uid://mcaic67jrfjg" path="res://Nodes/Text input.gd" id="2_is0sr"]
 [ext_resource type="Script" uid="uid://bvrgnif1twitg" path="res://Nodes/Capitalize.gd" id="3_ho8d6"]
 [ext_resource type="Script" uid="uid://cyibm6pa80ulw" path="res://Nodes/Text viewer.gd" id="4_niy71"]
 
+[sub_resource type="Resource" id="Resource_g7b7a"]
+script = ExtResource("2_ho8d6")
+metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
+
+[sub_resource type="Resource" id="Resource_gyc6d"]
+script = ExtResource("2_ho8d6")
+nodule = 1
+metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
+
 [sub_resource type="Resource" id="Resource_jhsap"]
 script = ExtResource("1_o4rxf")
-target_node = 1
+source_address = SubResource("Resource_g7b7a")
+target_address = SubResource("Resource_gyc6d")
 metadata/_custom_type_script = "uid://27ghg2gq13d2"
+
+[sub_resource type="Resource" id="Resource_6qx4q"]
+script = ExtResource("2_ho8d6")
+nodule = 1
+metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
+
+[sub_resource type="Resource" id="Resource_hqkgv"]
+script = ExtResource("2_ho8d6")
+nodule = 2
+metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
 
 [sub_resource type="Resource" id="Resource_lu6nj"]
 script = ExtResource("1_o4rxf")
-source_node = 1
-target_node = 2
+source_address = SubResource("Resource_6qx4q")
+target_address = SubResource("Resource_hqkgv")
 metadata/_custom_type_script = "uid://27ghg2gq13d2"
 
 [resource]
