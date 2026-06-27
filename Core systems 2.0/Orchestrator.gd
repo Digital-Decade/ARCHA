@@ -1,12 +1,13 @@
 extends RefCounted
 class_name Orchestrator
 
-var packet_bay: Array[Packet]
-
-static func poke():
-	print("Orchestrator poked")
+var wire_data
 
 func build_packet():
+	var packet := Packet.new()
+	packet
+
+func handle_ui_data() -> void:
 	pass
 
 func handle_packet(packet: Packet) -> void:
@@ -16,6 +17,5 @@ func handle_packet(packet: Packet) -> void:
 func check_ready_packets() -> void:
 	pass
 
-
-static func run(composition: Composition) -> void:
+func run(nodule: Nodule, packet: Packet) -> void:
 	pass

@@ -20,7 +20,7 @@ func append_custom_controls(node: Node, size: int = 1) -> void:
 		hbox.add_child(node)
 		_layout.add_child(hbox)
 
-func add_button(text: String) -> Button:
+func add_button(text: String = "Press me") -> Button:
 	var button := Button.new()
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.text = text
@@ -34,7 +34,7 @@ func add_text_field(size: int) -> TextEdit:
 	append_custom_controls(text_field, size)
 	return text_field
 
-func add_text_label(default_text: String) -> RichTextLabel:
+func add_text_label(default_text: String = "Default text") -> RichTextLabel:
 	var text_label := RichTextLabel.new()
 	text_label.text = default_text
 	text_label.fit_content = true

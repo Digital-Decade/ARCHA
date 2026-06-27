@@ -12,4 +12,3 @@ func _ready() -> void:
 	var widgets = composition.nodes
 	drawer = Drawer.create(drawer_container)
 	Drawer.refresh(drawer, widgets)
-	Orchestrator.run(composition)

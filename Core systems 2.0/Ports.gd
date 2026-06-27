@@ -1,8 +1,6 @@
 extends RefCounted
 class_name Ports
 
-enum Direction { IN, OUT, SIDE }
-
 var _inputs: Array[Port] = []
 var _outputs: Array[Port] = []
 var _widget_inputs: Array[UIPropertyAddress] = []
@@ -12,12 +10,10 @@ var _widget_outputs: Array[UIPropertyAddress] = []
 class Port:
 	var _label: String
 	var _type: Variant.Type
-	var _direction: Direction
 	
-	func _init(label: String, type: Variant.Type, direction: Direction) -> void:
+	func _init(label: String, type: Variant.Type) -> void:
 		_label = label
 		_type = type
-		_direction = direction
 
 
 class UIPropertyAddress:
@@ -25,14 +21,12 @@ class UIPropertyAddress:
 	var _property_name: StringName
 	var _label: String
 	var _type: Variant.Type
-	var _direction: Direction
 	
-	func _init(object_reference: Node, property_name: StringName, label: String, direction: Direction) -> void:
+	func _init(object_reference: Node, property_name: StringName, label: String) -> void:
 		_object_reference = object_reference
 		_property_name = property_name
 		_label = label
 		_type = typeof(object_reference.get(property_name))
-		_direction = direction
 
 class FinishSignal:
 	var _object_reference: Node
@@ -50,12 +44,12 @@ class ObjectProperty:
 
 
 func open_input(label: StringName, type: int) -> Port:
-	var port := Port.new(label, type, Direction.IN)
+	var port := Port.new(label, type)
 	_inputs.append(port)
 	return port
 
 func open_output(label: StringName, type: int) -> Port:
-	var port := Port.new(label, type, Direction.OUT)
+	var port := Port.new(label, type)
 	_outputs.append(port)
 	return port
 
@@ -71,4 +65,4 @@ func create_ui_emitter(
 	ui_object_reference: Node, 
 	change_signal: StringName
 ) -> void:
-	ui_object_reference.connect(change_signal, Orchestrator.poke)
+	ui_object_reference.connect(change_signal, Orchestrator.static_func_bro)
