@@ -4,7 +4,7 @@ class_name Packet
 var inputs: Dictionary = {}
 var outputs: Dictionary = {}
 
-func get_input(...port_ids: Array) -> Variant:
+func read_input(...port_ids: Array) -> Variant:
 	if port_ids.size() == 0:
 		return inputs.values()
 	else:
@@ -19,10 +19,9 @@ func get_input(...port_ids: Array) -> Variant:
 		else:
 			return selected_ports
 
-func set_output(port_id: Variant, value: Variant) -> void:
-	var selected_port
+func write_output(port_id: Variant, value: Variant) -> void:
 	if typeof(port_id) == TYPE_INT:
-		selected_port = outputs.keys()[port_id]
+		var key: StringName = outputs.keys()[port_id]
+		outputs[key] = value
 	elif typeof(port_id) == TYPE_STRING_NAME:
-		selected_port = outputs[port_id]
-	outputs[selected_port] = value
+		outputs[port_id] = value

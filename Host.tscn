@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ru0sakxsvrm1"]
 
 [ext_resource type="Script" uid="uid://bm43u5vdatlqf" path="res://Main.gd" id="1_5x0fp"]
-[ext_resource type="Resource" uid="uid://ck2nxeglp38s" path="res://Compositions/Capitalizerr.tres" id="2_uwlye"]
+[ext_resource type="Resource" uid="uid://ck2nxeglp38s" path="res://User/Compositions/Capitalizerr.tres" id="2_uwlye"]
 
 [node name="Root" type="Control" unique_id=848467508 node_paths=PackedStringArray("drawer_container")]
 layout_mode = 3

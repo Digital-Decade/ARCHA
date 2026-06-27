@@ -9,7 +9,7 @@ static func poke():
 func build_packet():
 	pass
 
-func handle_packet(packet: Packet):
+func handle_packet(packet: Packet) -> void:
 	pass
 	check_ready_packets()
 
