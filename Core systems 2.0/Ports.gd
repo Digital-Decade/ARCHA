@@ -1,10 +1,9 @@
 extends RefCounted
 class_name Ports
 
+
 var _inputs: Array[Port] = []
 var _outputs: Array[Port] = []
-var _widget_inputs: Array[UIPropertyAddress] = []
-var _widget_outputs: Array[UIPropertyAddress] = []
 
 
 class Port:
@@ -16,7 +15,24 @@ class Port:
 		_type = type
 
 
-class UIPropertyAddress:
+func open_input(label: StringName, type: Variant.Type) -> Port:
+	var port := Port.new(label, type)
+	_inputs.append(port)
+	return port
+
+func open_output(label: StringName, type: Variant.Type) -> Port:
+	var port := Port.new(label, type)
+	_outputs.append(port)
+	return port
+
+
+
+
+
+var _widget_inputs: Array[WidgetAddress] = []
+var _widget_outputs: Array[WidgetAddress] = []
+
+class WidgetAddress:
 	var _object_reference: Node
 	var _property_name: StringName
 	var _label: String
@@ -41,17 +57,6 @@ class ObjectProperty:
 	func _init(object_reference: Node, property_name: StringName) -> void:
 		_object_reference = object_reference
 		_property_name = property_name
-
-
-func open_input(label: StringName, type: int) -> Port:
-	var port := Port.new(label, type)
-	_inputs.append(port)
-	return port
-
-func open_output(label: StringName, type: int) -> Port:
-	var port := Port.new(label, type)
-	_outputs.append(port)
-	return port
 
 
 func create_ui_receiver(

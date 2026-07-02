@@ -1,7 +1,15 @@
 extends RefCounted
 class_name Orchestrator
 
-var wire_data
+var wire_data := WireData.new()
+
+func initialize_composition(composition: Composition, drawer: Node):
+	for nodule in composition.nodules:
+		var ports := Ports.new()
+		var widget := Widget.new()
+		nodule.interface(ports, widget)
+		Drawer.add_widget(drawer, widget)
+		something_to_intercept_ports_declared()
 
 func build_packet():
 	var packet := Packet.new()

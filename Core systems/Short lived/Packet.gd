@@ -11,9 +11,9 @@ func read_input(...port_ids: Array) -> Variant:
 		var selected_ports: Array = []
 		for port_id in port_ids:
 			if typeof(port_id) == TYPE_INT:
-				selected_ports.append(inputs.values()[port_id])
+				selected_ports.append(inputs.values().get(port_id))
 			elif typeof(port_id) == TYPE_STRING_NAME:
-				selected_ports.append(inputs[port_id])
+				selected_ports.append(inputs.get(port_id))
 		if selected_ports.size() == 1:
 			return selected_ports[0]
 		else:
@@ -22,6 +22,6 @@ func read_input(...port_ids: Array) -> Variant:
 func write_output(port_id: Variant, value: Variant) -> void:
 	if typeof(port_id) == TYPE_INT:
 		var key: StringName = outputs.keys()[port_id]
-		outputs[key] = value
+		outputs.set(key, value)
 	elif typeof(port_id) == TYPE_STRING_NAME:
-		outputs[port_id] = value
+		outputs.set(port_id, value)

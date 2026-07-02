@@ -9,6 +9,6 @@ func temporary_hotglue():
 
 func _ready() -> void:
 	temporary_hotglue()
-	var widgets = composition.nodes
 	drawer = Drawer.create(drawer_container)
-	Drawer.refresh(drawer, widgets)
+	var orchestrator = Orchestrator.new()
+	orchestrator.initialize_composition(composition, drawer)

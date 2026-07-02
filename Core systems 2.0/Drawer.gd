@@ -6,12 +6,7 @@ static func create(drawer_container: Node) -> Node:
 	drawer_container.add_child(drawer)
 	return drawer
 
-
-
-static func add_widget(drawer: Node, nodule: Script) -> void:
-	var ports := Ports.new()
-	var widget := Widget.new()
-	nodule.interface(ports, widget)
+static func add_widget(drawer: Node, widget: Widget) -> void:
 	if widget._layout != null:
 		drawer.add_child(widget._layout)
 	
@@ -22,7 +17,7 @@ static func clear(drawer: Node) -> void:
 	for child in drawer.get_children():
 		child.queue_free()
 		
-static func refresh(drawer: Node, nodules: Array[Script]) -> void:
+static func refresh(drawer: Node, widgets: Array[Widget]) -> void:
 	clear(drawer)
-	for nodule in nodules:
-		add_widget(drawer, nodule)
+	for widget in widgets:
+		add_widget(drawer, widget)
