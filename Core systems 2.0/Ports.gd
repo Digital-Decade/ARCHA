@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resource
 class_name Ports
 
 
@@ -29,20 +29,18 @@ func open_output(label: StringName, type: Variant.Type) -> Port:
 
 
 
-var _widget_inputs: Array[WidgetAddress] = []
-var _widget_outputs: Array[WidgetAddress] = []
+var _widget_inputs: Array[InternalConnection] = []
+var _widget_outputs: Array[InternalConnection] = []
 
-class WidgetAddress:
-	var _object_reference: Node
-	var _property_name: StringName
-	var _label: String
-	var _type: Variant.Type
+
+class InternalConnection:
+	var _port: Port
+	var _ui_address: UIAddress
 	
-	func _init(object_reference: Node, property_name: StringName, label: String) -> void:
-		_object_reference = object_reference
-		_property_name = property_name
-		_label = label
-		_type = typeof(object_reference.get(property_name))
+	func _init(port: Port, ui_address: UIAddress) -> void:
+		_port = port
+		_ui_address = ui_address
+
 
 class FinishSignal:
 	var _object_reference: Node
@@ -51,23 +49,18 @@ class FinishSignal:
 		_object_reference = object_reference
 		_signal_name = signal_name
 
-class ObjectProperty:
-	var _object_reference: Node
-	var _property_name: StringName
-	func _init(object_reference: Node, property_name: StringName) -> void:
-		_object_reference = object_reference
-		_property_name = property_name
-
-
 func create_ui_receiver(
 	out_port_to_push_from: Port, 
 	ui_object_reference: Node, 
 	ui_property_name: StringName
 ) -> void:
-	var address := ObjectProperty.new(ui_object_reference, ui_property_name)
+	var address := UIReceiver.new(ui_object_reference, ui_property_name, &"Default label")
+	_widget_inputs.append(InternalConnection.new(out_port_to_push_from, address))
 
 func create_ui_emitter(
 	ui_object_reference: Node, 
 	change_signal: StringName
 ) -> void:
-	ui_object_reference.connect(change_signal, Orchestrator.static_func_bro)
+	ui_object_reference.connect(change_signal, Orchestrator.handle_ui_data)
+	var address := UIEmitter.new(&"Default label")
+	_widget_outputs

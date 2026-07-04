@@ -1,8 +1,8 @@
-extends RefCounted
+extends Resource
 class_name Packet
 
-var inputs: Dictionary = {}
-var outputs: Dictionary = {}
+@export var inputs: Dictionary = {}
+@export var outputs: Dictionary = {}
 
 func read_input(...port_ids: Array) -> Variant:
 	if port_ids.size() == 0:

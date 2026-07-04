@@ -1,0 +1,2 @@
+extends UIAddress
+class_name UIEmitter
