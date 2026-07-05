@@ -1,77 +1,24 @@
 [gd_resource type="Resource" script_class="Composition" format=3 uid="uid://ck2nxeglp38s"]
 
-[ext_resource type="Script" uid="uid://27ghg2gq13d2" path="res://Core systems/Cold/Connections.gd" id="1_ho8d6"]
 [ext_resource type="Script" uid="uid://mcaic67jrfjg" path="res://User/Nodules/Text input.gd" id="2_is0sr"]
-[ext_resource type="Script" uid="uid://ckr8jwkqi0dsp" path="res://Core systems/Cold/Address.gd" id="2_niy71"]
 [ext_resource type="Script" uid="uid://bvrgnif1twitg" path="res://User/Nodules/Capitalize.gd" id="3_ho8d6"]
+[ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://Core systems/Composition.gd" id="4_1ugvj"]
 [ext_resource type="Script" uid="uid://cyibm6pa80ulw" path="res://User/Nodules/Text viewer.gd" id="4_niy71"]
-[ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://Core systems/Cold/Composition.gd" id="6_a15nt"]
+[ext_resource type="Script" uid="uid://27ghg2gq13d2" path="res://Core systems/Wire.gd" id="5_jitfm"]
 
-[sub_resource type="Resource" id="Resource_g7b7a"]
-script = ExtResource("2_niy71")
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_gyc6d"]
-script = ExtResource("2_niy71")
-nodule = 1
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_jhsap"]
-script = ExtResource("1_ho8d6")
-source_address = SubResource("Resource_g7b7a")
-target_address = SubResource("Resource_gyc6d")
+[sub_resource type="Resource" id="Resource_jitfm"]
+script = ExtResource("5_jitfm")
+_target_nodule = 1
 metadata/_custom_type_script = "uid://27ghg2gq13d2"
 
-[sub_resource type="Resource" id="Resource_6qx4q"]
-script = ExtResource("2_niy71")
-nodule = 1
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_hqkgv"]
-script = ExtResource("2_niy71")
-nodule = 2
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_lu6nj"]
-script = ExtResource("1_ho8d6")
-source_address = SubResource("Resource_6qx4q")
-target_address = SubResource("Resource_hqkgv")
-metadata/_custom_type_script = "uid://27ghg2gq13d2"
-
-[sub_resource type="Resource" id="Resource_ew7qd"]
-script = ExtResource("2_niy71")
-port_space = 1
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_qu2xx"]
-script = ExtResource("2_niy71")
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_qqeyp"]
-script = ExtResource("1_ho8d6")
-source_address = SubResource("Resource_ew7qd")
-target_address = SubResource("Resource_qu2xx")
-metadata/_custom_type_script = "uid://27ghg2gq13d2"
-
-[sub_resource type="Resource" id="Resource_y5x6n"]
-script = ExtResource("2_niy71")
-nodule = 2
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_mjtej"]
-script = ExtResource("2_niy71")
-nodule = 2
-port_space = 1
-metadata/_custom_type_script = "uid://ckr8jwkqi0dsp"
-
-[sub_resource type="Resource" id="Resource_7ud13"]
-script = ExtResource("1_ho8d6")
-source_address = SubResource("Resource_y5x6n")
-target_address = SubResource("Resource_mjtej")
+[sub_resource type="Resource" id="Resource_mbpjh"]
+script = ExtResource("5_jitfm")
+_source_nodule = 1
+_target_nodule = 2
 metadata/_custom_type_script = "uid://27ghg2gq13d2"
 
 [resource]
-script = ExtResource("6_a15nt")
+script = ExtResource("4_1ugvj")
 nodules = Array[Script]([ExtResource("2_is0sr"), ExtResource("3_ho8d6"), ExtResource("4_niy71")])
-connections = Array[ExtResource("1_ho8d6")]([SubResource("Resource_jhsap"), SubResource("Resource_lu6nj"), SubResource("Resource_qqeyp"), SubResource("Resource_7ud13")])
+wires = Array[ExtResource("5_jitfm")]([SubResource("Resource_jitfm"), SubResource("Resource_mbpjh")])
 metadata/_custom_type_script = "uid://c38d13llfan2p"

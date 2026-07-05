@@ -2,18 +2,16 @@ extends RefCounted
 class_name Orchestrator
 
 var wire_data := WireData.new()
-var address_book: Array = []
+var nodule_internal_wires: Dictionary = {}
 
 
 func initialize_composition(composition: Composition, drawer: Node):
-	var index := 0
 	for nodule in composition.nodules:
 		var ports := Ports.new()
 		var widget := Widget.new()
 		nodule.interface(ports, widget)
 		Drawer.add_widget(drawer, widget)
-		address_book.append(NoduleAddresses.new(index, ports))
-		index += 1
+		nodule_internal_wires.set(nodule, ports)
 
 func build_packet():
 	var packet := Packet.new()
