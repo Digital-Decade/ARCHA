@@ -1,6 +1,6 @@
 extends Nodule
 
-static func interface(ports: Ports, _widget: Widget) -> void:
+static func setup(ports: Ports, _widget: Widget) -> void:
 	ports.open_input(&"Text", TYPE_STRING)
 	ports.open_output(&"Text", TYPE_STRING)
 

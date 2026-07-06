@@ -1,6 +1,6 @@
 extends Nodule
 
-static func interface(ports: Ports, widget: Widget) -> void:
+static func setup(ports: Ports, widget: Widget) -> void:
 	var text_label: RichTextLabel = widget.add_text_label("Test")
 	ports.open_input(&"Text", TYPE_STRING)
 	ports.open_output(&"Text", TYPE_STRING)

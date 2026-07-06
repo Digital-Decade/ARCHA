@@ -1,8 +1,8 @@
 extends Nodule
 
-static func interface(ports: Ports, widget: Widget) -> void:
+static func setup(ports: Ports, widget: Widget) -> void:
 	var text_field = widget.add_text_field(6)
-	var button = widget.add_button("Send")
+	var _button = widget.add_button("Send")
 	ports.open_input(&"Text", TYPE_STRING)
 	ports.open_output(&"Text", TYPE_STRING)
 	
