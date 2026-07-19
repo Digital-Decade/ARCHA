@@ -2,44 +2,44 @@
 
 [ext_resource type="Script" uid="uid://c2qano8d7v7o7" path="res://Core systems/Compositions/Wire.gd" id="1_1ugvj"]
 [ext_resource type="Script" uid="uid://mcaic67jrfjg" path="res://User/Nodules/Text input.gd" id="2_is0sr"]
-[ext_resource type="Script" uid="uid://dw5kuhkajfm18" path="res://Core systems/Compositions/Address.gd" id="2_jitfm"]
 [ext_resource type="Script" uid="uid://bvrgnif1twitg" path="res://User/Nodules/Capitalize.gd" id="3_ho8d6"]
 [ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://Core systems/Compositions/Composition.gd" id="4_0nvyq"]
 [ext_resource type="Script" uid="uid://cyibm6pa80ulw" path="res://User/Nodules/Text viewer.gd" id="4_niy71"]
+[ext_resource type="Script" uid="uid://dw5kuhkajfm18" path="res://Core systems/Compositions/Port address.gd" id="6_jitfm"]
 
-[sub_resource type="Resource" id="Resource_fs0mq"]
-script = ExtResource("2_jitfm")
+[sub_resource type="Resource" id="Resource_bh481"]
+script = ExtResource("6_jitfm")
 metadata/_custom_type_script = "uid://dw5kuhkajfm18"
 
-[sub_resource type="Resource" id="Resource_xnsru"]
-script = ExtResource("2_jitfm")
+[sub_resource type="Resource" id="Resource_h5543"]
+script = ExtResource("6_jitfm")
 _nodule = 1
 metadata/_custom_type_script = "uid://dw5kuhkajfm18"
 
-[sub_resource type="Resource" id="Resource_jwmmw"]
+[sub_resource type="Resource" id="Resource_whew0"]
 script = ExtResource("1_1ugvj")
-source = SubResource("Resource_fs0mq")
-target = SubResource("Resource_xnsru")
+origin = SubResource("Resource_bh481")
+target = SubResource("Resource_h5543")
 metadata/_custom_type_script = "uid://c2qano8d7v7o7"
 
-[sub_resource type="Resource" id="Resource_p8qu2"]
-script = ExtResource("2_jitfm")
+[sub_resource type="Resource" id="Resource_mw8ey"]
+script = ExtResource("6_jitfm")
 _nodule = 1
 metadata/_custom_type_script = "uid://dw5kuhkajfm18"
 
-[sub_resource type="Resource" id="Resource_niodw"]
-script = ExtResource("2_jitfm")
+[sub_resource type="Resource" id="Resource_t23xu"]
+script = ExtResource("6_jitfm")
 _nodule = 2
 metadata/_custom_type_script = "uid://dw5kuhkajfm18"
 
-[sub_resource type="Resource" id="Resource_mblaf"]
+[sub_resource type="Resource" id="Resource_b4m6p"]
 script = ExtResource("1_1ugvj")
-source = SubResource("Resource_p8qu2")
-target = SubResource("Resource_niodw")
+origin = SubResource("Resource_mw8ey")
+target = SubResource("Resource_t23xu")
 metadata/_custom_type_script = "uid://c2qano8d7v7o7"
 
 [resource]
 script = ExtResource("4_0nvyq")
 nodules = Array[Script]([ExtResource("2_is0sr"), ExtResource("3_ho8d6"), ExtResource("4_niy71")])
-wires = Array[ExtResource("1_1ugvj")]([SubResource("Resource_jwmmw"), SubResource("Resource_mblaf")])
+wires = Array[ExtResource("1_1ugvj")]([SubResource("Resource_whew0"), SubResource("Resource_b4m6p")])
 metadata/_custom_type_script = "uid://c38d13llfan2p"

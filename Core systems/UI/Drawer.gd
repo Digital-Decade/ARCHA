@@ -1,23 +1,21 @@
 extends RefCounted
 class_name Drawer
 
-static func create(drawer_container: Node) -> Node:
-	var drawer := HBoxContainer.new()
-	drawer_container.add_child(drawer)
-	return drawer
+var drawer: Node
+var _active_widgets: Dictionary = {}
 
-static func add_widget(drawer: Node, widget: Widget) -> void:
+func create(drawer_container: Node) -> void:
+	drawer = HBoxContainer.new()
+	drawer_container.add_child(drawer)
+
+func add_widget(widget: Widget, nodule_id: int) -> void:
 	if widget._layout != null:
 		drawer.add_child(widget._layout)
+		_active_widgets.set(nodule_id, widget)
 	
-static func drop_widget(drawer: Node, index_of_target: int) -> void:
-	drawer.get_child(index_of_target).queue_free()
+func drop_widget(index_of_target: int) -> void:
+	_active_widgets.get(index_of_target).queue_free()
 
-static func clear(drawer: Node) -> void:
+func clear() -> void:
 	for child in drawer.get_children():
 		child.queue_free()
-		
-static func refresh(drawer: Node, widgets: Array[Widget]) -> void:
-	clear(drawer)
-	for widget in widgets:
-		add_widget(drawer, widget)

@@ -1,12 +1,12 @@
 extends Resource
 class_name Shipment
 
-@export var _destination: Address
 @export var _package: Packet
+@export var _destination: NoduleAddress
 
 func _init(
-	destination: Address,
-	package: Packet
+	package: Packet,
+	destination: NoduleAddress
 ) -> void:
-	_destination = destination
 	_package = package
+	_destination = destination

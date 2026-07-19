@@ -5,6 +5,6 @@ static func setup(ports: Ports, _widget: Widget) -> void:
 	ports.open_output(&"Text", TYPE_STRING)
 
 static func function(packet: Packet) -> void:
-	var text: String = packet.get_input(0)
-	text.to_upper()
-	packet.set_output(0, text)
+	var text: String = packet.read_input(0)
+	text = text.to_upper()
+	packet.write_output(0, text)
