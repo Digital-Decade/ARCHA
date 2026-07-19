@@ -1,7 +1,6 @@
 extends Resource
 class_name Ports
 
-
 var _inputs: Array[Port] = []
 var _outputs: Array[Port] = []
 
@@ -10,8 +9,7 @@ class Port:
 	var _label: StringName
 	var _type: Variant.Type
 	
-	func _init(label: StringName, type: Variant.Type) -> void: 
-		_label = label; _type = type
+	func _init(label: StringName, type: Variant.Type) -> void: _label = label; _type = type
 
 func open_input(label: StringName, type: Variant.Type) -> void:  # Add return Port again to give ore valid ways of configuration
 	_inputs.append(Port.new(label, type))
@@ -50,20 +48,27 @@ class UIReceiver extends UIAddress:
 class UIEmitter extends UIAddress:
 	# Needs a whole additional system to enable sourcing data from object property rather than signal argument
 	var _signal_name: StringName
+	var _data_source: Variant
 	
-	func _init(object_reference: Node, signal_name: StringName) -> void: 
+	func _init(object_reference: Node, signal_name: StringName, data_source: Variant) -> void: 
 		_object_reference = object_reference
 		_signal_name = signal_name
-		var type: Variant.Type
-		var signal_info := GDTools.find_signal_info(object_reference, signal_name)
-		if not signal_info.is_empty():
-			var arguments: Array = signal_info["args"]
-			if arguments.size() > 1:
-				for argument in arguments:
-					type = argument["type"] as Variant.Type
-			else:
-				type = TYPE_NIL
-		_type = type
+		match typeof(data_source):
+			TYPE_INT:
+				_data_source = data_source
+				var signal_info := GDTools.find_signal_info(object_reference, signal_name)
+				if not signal_info.is_empty():
+					var arguments: Array = signal_info["args"]
+					if arguments.size() > 1:
+						_type = arguments[data_source]["type"] as Variant.Type
+					else:
+						_type = TYPE_NIL
+			TYPE_STRING_NAME:
+				_data_source = data_source
+				_type = typeof(object_reference.get(data_source)) as Variant.Type
+			_:
+				push_error("Data source argument should either be of TYPE_INT to indicate a signal argument position, or of TYPE_STRING_NAME to indicate an object property.")
+				
 
 func create_ui_receiver(
 	out_port_to_push_from: int, 
@@ -72,19 +77,18 @@ func create_ui_receiver(
 ) -> void:
 	var address := UIReceiver.new(ui_object_reference, ui_property_name)
 	if address._type != _outputs.get(out_port_to_push_from)._type:
-		push_error("UI receiver type doesn't match port type")
+		push_error("UI receiver type (%s) doesn't match port type (%s)." % [typeof(address._type), typeof(_outputs.get(out_port_to_push_from)._type)])
 		return
 	_ui_receiver_wires.append(InternalWire.new(out_port_to_push_from, address))
 
 func create_ui_emitter(
 	ingest_port: int,
 	ui_object_reference: Node, 
-	change_signal: StringName
+	change_signal: StringName,
+	data_source: Variant
 ) -> void:
-	var address := UIEmitter.new(ui_object_reference, change_signal)
+	var address := UIEmitter.new(ui_object_reference, change_signal, data_source)
 	if address._type != _inputs.get(ingest_port)._type:
-		print(type_string(_inputs.get(ingest_port)._type))
-		print(type_string(address._type))
-		push_error("UI emitter type doesn't match port type")
+		push_error("UI emitter type (%s) doesn't match port type (%s)." % [type_string(address._type), type_string(_inputs.get(ingest_port)._type)])
 		return
 	_ui_emitters_wires.append(InternalWire.new(ingest_port, address))
