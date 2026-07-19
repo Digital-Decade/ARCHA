@@ -1,142 +1,102 @@
-extends Node
+extends RefCounted
+class_name Orchestrator
 
 
+var wire_data: Dictionary = {}
+var nodule_internal_wires: Dictionary = {}
 
-# Todo:
-# Performance Logger: Benchmarking the workers to see exactly how many microseconds they take to execute on their background threads.
 
-
-const TYPE_REGISTRY : Dictionary = {
-	"text_input": preload("res://Nodes/Text input.gd"),
-	"string_uppercase": preload("res://Nodes/String uppercase.gd"),
-	"console_print": preload("res://Nodes/Console print.gd"),
-	"text_join": preload("res://Nodes/Text joiner.gd")
-}
-
-var _compiled_graph: Dictionary = {}
-var task_queue: Array[Dictionary] = []
-var queue_mutex: Mutex = Mutex.new()
-
-func _ready() -> void:
-	var raw_data := _load_composition_file("res://Compositions/Branching composition.json")
-	if raw_data.is_empty():
-		return
+class SmartPacket:
+	var _packet: Packet
+	var _packet_address: PacketAddress
 	
-	_compile_graph(raw_data)
+	func _init(
+		packet: Packet,
+		packet_address: PacketAddress
+	) -> void:
+		_packet = packet
+		_packet_address = packet_address
 	
-	var context := GraphRunContext.new()
+class PacketAddress:
+	var _nodule_id: int
+	var _composition: Composition
 	
-	for node_id in _compiled_graph:
-		context.setup_node(node_id)
-		var blueprint: Dictionary = _compiled_graph[node_id]
-		for input_name in blueprint["static_inputs"]:
-			context.write_input(node_id, input_name, blueprint["static_inputs"][input_name])
+	func _init(
+		nodule_id: int,
+		composition: Composition
+	) -> void:
+		_nodule_id = nodule_id
+		_composition = composition
 	
-	queue_mutex.lock()
-	var spawn_count: int = 0
-	for node_id in _compiled_graph:
-		var blueprint: Dictionary = _compiled_graph[node_id]
-		if blueprint["is_root"]:
-			task_queue.append({
-			"node_id": node_id,
-			"context": context
-			})
-			spawn_count += 1
-	queue_mutex.unlock()
+	func get_nodule() ->  Script:
+		return _composition.nodules.get(_nodule_id)
 	
-	for i in range(spawn_count):
-		WorkerThreadPool.add_task(_thread_worker)
 
 
-func _load_composition_file(path: String) -> Dictionary:
-	if not FileAccess.file_exists(path):
-		push_error("Composition file not found at: " + path)
-		return {}
-	var file := FileAccess.open(path, FileAccess.READ)
-	var test_json := JSON.new()
-	if test_json.parse(file.get_as_text()) == OK:
-		if typeof(test_json.data) == TYPE_DICTIONARY:
-			return test_json.data
-	return {}
+
+func initialize_composition(composition: Composition, drawer: Node):
+	var index := 0
+	for nodule_script in composition.nodules:
+		var ports := Ports.new()
+		var widget := Widget.new()
+		nodule_script.setup(ports, widget)
+		Drawer.add_widget(drawer, widget)
+		
+		for wire in ports._ui_emitters_wires:
+			var packet_address := PacketAddress.new(index, composition)
+			signal_connector(packet_address, wire._port_id, wire._ui_address._object_reference, wire._ui_address._signal_name)
+		nodule_internal_wires.set(nodule_script, ports)
+		index += 1
 
 
-func _compile_graph(raw_json: Dictionary) -> void:
-	_compiled_graph.clear()
+static func signal_connector(packet_address: PacketAddress, ingest_port: int, object_reference: Node, signal_name: StringName):
+	object_reference.connect(signal_name, handle_ui_data.bind(packet_address, ingest_port))
+
+static func handle_ui_data(values: Array, _address: PacketAddress, _ingest_port: int) -> void:
+	print("Values received: ", values)
+
+func handle_packet(smart_packet: SmartPacket) -> void:
+	var packet := smart_packet._packet
+	var source_nodule := smart_packet._packet_address._nodule_id
+	var composition := smart_packet._packet_address._composition
 	
-	for node_id in raw_json["nodes"]:
-		var raw_node: Dictionary = raw_json["nodes"][node_id]
-		var worker_script: Script = TYPE_REGISTRY[raw_node["worker_type"]]
-		
-		var input_names: Array = []
-		if "INPUTS" in worker_script:
-			input_names = worker_script.INPUTS
-		
-		var static_inputs: Dictionary = {}
-		if raw_node.has("values"):
-			for key in raw_node["values"]:
-				static_inputs[key] = raw_node["values"][key]
-		
-		
-		_compiled_graph[node_id] = {
-			"script": worker_script,
-			"input_names": input_names,
-			"static_inputs": static_inputs,
-			"downstream_routes": [],
-			"is_root": true
-		}
-	
-	for connection in raw_json["connections"]:
-		var from_node_id: String = connection["from_node"]
-		var from_port: int = connection["from_port"]
-		var to_node_id: String = connection["to_node"]
-		var to_port: int = connection["to_port"]
-		
-		var from_blueprint: Dictionary = _compiled_graph[from_node_id]
-		var to_blueprint: Dictionary = _compiled_graph[to_node_id]
-		
-		var from_socket_name: String = from_blueprint["script"].OUTPUTS[from_port]
-		var to_socket_name: String = to_blueprint["script"].INPUTS[to_port]
-		
-		from_blueprint["downstream_routes"].append({
-			"from_socket": from_socket_name,
-			"to_node": to_node_id,
-			"to_socket": to_socket_name
-		})
-		
-		to_blueprint["is_root"] = false
+	var port_index := 0
+	for data in packet._outputs.values():
+		var target_addresses: Array[Address] = []
+		for wire in composition.wires:
+			var source_address := Address.new(source_nodule, port_index)
+			if wire.source == source_address:
+				target_addresses.append(wire.target)
+		for target_address in target_addresses:
+			wire_data.set(target_address, data)
+			check_ready_packet(PacketAddress.new(target_address._nodule, composition))
+		port_index += 1
 
-func _thread_worker() -> void:
-	while true:
-		var current_token: Dictionary = {}
-		
-		queue_mutex.lock()
-		if not task_queue.is_empty():
-			current_token = task_queue.pop_front()
-		queue_mutex.unlock()
-		
-		if current_token.is_empty():
-			break
-			
-		_execute_node(current_token["node_id"], current_token["context"])
+func check_ready_packet(packet_address: PacketAddress) -> void:
+	var nodule_script: Script = packet_address.get_nodule()
+	var ports: Ports = nodule_internal_wires.get(nodule_script)
+	var port_index := 0
+	var inputs: Array[Variant] = []
+	for input in ports._inputs:
+		inputs.append(wire_data.get(Address.new(packet_address.nodule_id, port_index)))
+		port_index += 1
+	if not inputs.has(null):
+		assemble_packet(packet_address)
 
+func assemble_packet(packet_address: PacketAddress):
+	var packet := Packet.new()
+	var ports: Ports = nodule_internal_wires.get(packet_address.get_nodule())
+	var port_index := 0
+	for input in ports._inputs:
+		var data: Variant = wire_data.get(Address.new(packet_address._nodule_id, port_index)) 
+		packet._inputs.set(input._label, data)
+		port_index += 1
+	for output in ports._outputs:
+		packet._outputs.set(output._label, null)
+	run(SmartPacket.new(packet, packet_address))
 
-func _execute_node(node_id: String, context: GraphRunContext) -> void:
-	var blueprint: Dictionary = _compiled_graph[node_id]
-	var inputs: Dictionary = context.read_inputs_for(node_id, blueprint["input_names"])
-	var worker = blueprint["script"].new()
-	var results: Dictionary = worker.execute(inputs)
-	
-	for route in blueprint["downstream_routes"]:
-		var value = results.get(route["from_socket"], null)
-		
-		context.write_input(route["to_node"], route["to_socket"], value)
-		
-		var target_blueprint: Dictionary = _compiled_graph[route["to_node"]]
-		if context.is_node_ready(route["to_node"], target_blueprint["input_names"]):
-			queue_mutex.lock()
-			task_queue.append({
-				"node_id": route["to_node"],
-				"context": context
-			})
-			queue_mutex.unlock()
-			WorkerThreadPool.add_task(_thread_worker)
+func run(smart_packet: SmartPacket) -> void:
+	var packet = smart_packet._packet
+	var nodule = smart_packet._packet_address.get_nodule()
+	nodule.function(packet)
+	handle_packet(smart_packet)

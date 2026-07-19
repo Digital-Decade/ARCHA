@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://djaw6gj5tumyf"]
-
-[ext_resource type="Script" uid="uid://dhsmtcwhj0i1i" path="res://Scenes/Workspace/Visual node.gd" id="1_p63mb"]
-
-[node name="Node" type="GraphNode" unique_id=1462302090]
-script = ExtResource("1_p63mb")
