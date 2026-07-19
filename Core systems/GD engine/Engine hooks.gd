@@ -1,5 +1,5 @@
 extends RefCounted
-class_name Hooks
+class_name GDHooks
 
 func set_content_scale(
 	host:Node,
