@@ -35,18 +35,24 @@ class PacketAddress:
 
 
 func initialize_composition(composition: Composition, drawer: Node):
+	var index := 0
 	for nodule_script in composition.nodules:
 		var ports := Ports.new()
 		var widget := Widget.new()
 		nodule_script.setup(ports, widget)
 		Drawer.add_widget(drawer, widget)
+		
+		for wire in ports._ui_emitters_wires:
+			var packet_address := PacketAddress.new(index, composition)
+			signal_connector(packet_address, wire._port_id, wire._ui_address._object_reference, wire._ui_address._signal_name)
 		nodule_internal_wires.set(nodule_script, ports)
+		index += 1
 
 
-static func signal_connector(ingest_port: int, object_reference: Node, signal_name: StringName):
-	object_reference.connect(signal_name, handle_ui_data)
+static func signal_connector(packet_address: PacketAddress, ingest_port: int, object_reference: Node, signal_name: StringName):
+	object_reference.connect(signal_name, handle_ui_data.bind(packet_address, ingest_port))
 
-static func handle_ui_data(values: Array, address: PacketAddress) -> void:
+static func handle_ui_data(values: Array, _address: PacketAddress, _ingest_port: int) -> void:
 	print("Values received: ", values)
 
 func handle_packet(smart_packet: SmartPacket) -> void:
