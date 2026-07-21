@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dss2upk86fobp"]
 
-[ext_resource type="Script" uid="uid://pye3oqrwo0js" path="res://Project files/Projects/ARCHA/UI handler.gd" id="1_52nlf"]
-[ext_resource type="Script" uid="uid://cwevtrenfi0qt" path="res://Project files/Projects/ARCHA/Frontends/Clear UI.gd" id="2_hkbc5"]
-[ext_resource type="Script" uid="uid://ddtehl5ewvxxw" path="res://Project files/Projects/ARCHA/Frontends/LocaRu.gd" id="2_ipf50"]
+[ext_resource type="Script" uid="uid://pye3oqrwo0js" path="res://!Archive/LocaRu BT/UI handler.gd" id="1_f1nke"]
+[ext_resource type="Script" uid="uid://cwevtrenfi0qt" path="res://!Archive/LocaRu BT/Frontends/Clear UI.gd" id="2_c007k"]
+[ext_resource type="Script" uid="uid://ddtehl5ewvxxw" path="res://!Archive/LocaRu BT/Frontends/LocaRu.gd" id="3_s3j8t"]
 
 [node name="Root" type="Control" unique_id=74270458 node_paths=PackedStringArray("frontends", "tab_bar", "content_panel", "parameters_panel", "status_bar")]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_52nlf")
+script = ExtResource("1_f1nke")
 frontends = [NodePath("Shown frontends/Clear UI"), NodePath("Shown frontends/LocaRu")]
 tab_bar = NodePath("UI Root/VBox/Top bar/VBox/HBox/Tabs")
 content_panel = NodePath("UI Root/VBox/Main section/Content panel/Scroll/Margin")
@@ -23,10 +23,10 @@ status_bar = NodePath("UI Root/VBox/Status bar/HBoxContainer/MarginContainer/Ric
 [node name="Shown frontends" type="Node" parent="." unique_id=1320644961]
 
 [node name="Clear UI" type="Node" parent="Shown frontends" unique_id=1700104382]
-script = ExtResource("2_hkbc5")
+script = ExtResource("2_c007k")
 
 [node name="LocaRu" type="Node" parent="Shown frontends" unique_id=1106720993]
-script = ExtResource("2_ipf50")
+script = ExtResource("3_s3j8t")
 
 [node name="UI Root" type="PanelContainer" parent="." unique_id=779563866]
 layout_mode = 1

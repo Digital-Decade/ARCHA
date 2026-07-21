@@ -14,7 +14,7 @@ config/name="ARCHA"
 config/version="1.0.1"
 run/main_scene="uid://ru0sakxsvrm1"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
 
 [display]
 

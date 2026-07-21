@@ -1,7 +1,7 @@
 extends Node
 class_name ImageTools
 
-static var fallback_texture := preload("res://Project files/icon.svg")
+static var fallback_texture := preload("res://Assets/icon.svg")
 
 static func decode_image(file_path := "") -> Texture2D: # ~~Return type could be ImageTexture or AnimatedTexture for gifs, double type returns don't exist afaik~~
 	var texture:Texture2D
