@@ -2,14 +2,5 @@
 .godot/
 /android/
 
-# Olkris's selective include
-/*/
-gitmultipush.bat
-gitmultiswap.bat
-!Project files/
-Project files/*/
-!Project files/*.*
-!Project files/Projects/
-Project files/Projects/*/
-!Project files/Projects/*.*
-!Project files/Projects/ARCHA
+.nomedia
+

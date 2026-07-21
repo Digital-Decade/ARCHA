@@ -1,0 +1,10 @@
+extends Nodule
+
+static func setup(ports: Ports, _widget: Widget) -> void:
+	ports.open_input(&"Text", TYPE_STRING)
+	ports.open_output(&"Text", TYPE_STRING)
+
+static func function(packet: Packet) -> void:
+	var text: String = packet.read_input(0)
+	text = text.to_upper()
+	packet.write_output(0, text)

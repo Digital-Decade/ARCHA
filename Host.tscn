@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ru0sakxsvrm1"]
+
+[ext_resource type="Script" uid="uid://bm43u5vdatlqf" path="res://Main.gd" id="1_5x0fp"]
+[ext_resource type="Resource" uid="uid://ck2nxeglp38s" path="res://User/Compositions/Capitalizerr.tres" id="2_uwlye"]
+
+[node name="Root" type="Control" unique_id=848467508 node_paths=PackedStringArray("drawer_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5x0fp")
+drawer_container = NodePath("VBoxContainer/Content area/Drawer container")
+composition = ExtResource("2_uwlye")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656339549]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top bar" type="Panel" parent="VBoxContainer" unique_id=1842002475]
+layout_mode = 2
+
+[node name="Content area" type="PanelContainer" parent="VBoxContainer" unique_id=1113811644]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/Content area" unique_id=1204010321]
+layout_mode = 2
+
+[node name="Drawer container" type="PanelContainer" parent="VBoxContainer/Content area" unique_id=113987348]
+layout_mode = 2
+size_flags_horizontal = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="Status bar" type="Panel" parent="VBoxContainer" unique_id=413240572]
+layout_mode = 2
