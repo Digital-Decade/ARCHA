@@ -224,7 +224,7 @@ func the_fabled_glicko_2_model() -> void:
 
 
 func predicted_score(rating_difference:float) -> float:
-	return Curves.sigmoid(rating_difference)
+	return Preloader_temp_patch.sigmoid.manual_temp(rating_difference)
 
 func update_rating(previous_score:float, scaling_factor:float, actual_score, score_difference) -> float:
 	var difference_from_prediction = actual_score - predicted_score(score_difference)

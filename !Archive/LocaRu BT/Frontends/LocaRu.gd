@@ -183,7 +183,7 @@ func redraw_item_list(list_to_update:ItemList, item_names:Array[String] = []) ->
 
 func resize_list_icons(scale:float, list_to_update:Node = locaru_grid) -> void:
 	item_display_size = scale
-	var scaled_size:float = 100.0 + 900.0 * Curves.exponent_flipped_clipped(scale, 10.0, 0.995) # Replace with e exponent function probably.
+	var scaled_size:float = 100.0 + 900.0 * Preloader_temp_patch.exponent_flipped_clipped.manual_temp(scale, 10.0, 0.995) # Replace with e exponent function probably.
 	#scaled_size = 100 + 900*scale # Linear scale method for comparison (shit)
 	list_to_update.fixed_column_width = scaled_size
 	list_to_update.fixed_icon_size = Vector2i(int(scaled_size), int(scaled_size))
