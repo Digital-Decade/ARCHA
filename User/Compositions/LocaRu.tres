@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Composition" format=3 uid="uid://jw1bwbdhlgx6"]
+
+[ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://Core systems/Compositions/Composition.gd" id="1_b04po"]
+[ext_resource type="Script" uid="uid://vb55fd6d06wu" path="res://User/Nodules/Item list.gd" id="1_g5mk4"]
+[ext_resource type="Script" uid="uid://cyibm6pa80ulw" path="res://User/Nodules/Text viewer.gd" id="2_5fbwy"]
+[ext_resource type="Script" uid="uid://c2qano8d7v7o7" path="res://Core systems/Compositions/Wire.gd" id="2_558i1"]
+[ext_resource type="Script" uid="uid://mcaic67jrfjg" path="res://User/Nodules/Text input.gd" id="3_5fbwy"]
+[ext_resource type="Script" uid="uid://dw5kuhkajfm18" path="res://Core systems/Compositions/Port address.gd" id="6_t4k6i"]
+
+[sub_resource type="Resource" id="Resource_yav5m"]
+script = ExtResource("6_t4k6i")
+metadata/_custom_type_script = "uid://dw5kuhkajfm18"
+
+[sub_resource type="Resource" id="Resource_r3dnf"]
+script = ExtResource("6_t4k6i")
+_nodule = 1
+metadata/_custom_type_script = "uid://dw5kuhkajfm18"
+
+[sub_resource type="Resource" id="Resource_t4k6i"]
+script = ExtResource("2_558i1")
+origin = SubResource("Resource_yav5m")
+target = SubResource("Resource_r3dnf")
+metadata/_custom_type_script = "uid://c2qano8d7v7o7"
+
+[resource]
+script = ExtResource("1_b04po")
+nodules = Array[Script]([ExtResource("1_g5mk4"), ExtResource("2_5fbwy"), ExtResource("3_5fbwy")])
+wires = Array[ExtResource("2_558i1")]([SubResource("Resource_t4k6i")])
+metadata/_custom_type_script = "uid://c38d13llfan2p"
