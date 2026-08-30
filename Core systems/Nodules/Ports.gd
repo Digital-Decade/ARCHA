@@ -85,7 +85,7 @@ func create_ui_emitter(
 	ingest_port: int,
 	ui_object_reference: Node, 
 	change_signal: StringName,
-	data_source: Variant
+	data_source: DataSource
 ) -> void:
 	var address := UIEmitter.new(ui_object_reference, change_signal, data_source)
 	if address._type != _inputs.get(ingest_port)._type:

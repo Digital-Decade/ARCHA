@@ -8,6 +8,9 @@ func create(minimum_size: int = 200) -> void:
 		_layout = VBoxContainer.new()
 		_layout.custom_minimum_size = Vector2i(minimum_size, 0)
 
+func assign(scene: Node) -> void:
+	pass
+
 func append_custom_controls(node: Node, size: int = 1) -> void:
 	if _layout == null:
 		create()
