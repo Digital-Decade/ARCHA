@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://krupwojnsmv1"]
+
+[ext_resource type="Script" uid="uid://btl4omjxx5wj1" path="res://!Archive/Better UI/Main.gd" id="1_kd5p3"]
+[ext_resource type="Texture2D" uid="uid://bg377l6j4b7n2" path="res://Assets/icon.svg" id="1_nkvuk"]
+
+[node name="Root" type="Control" unique_id=1931088732]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kd5p3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2110498851]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="HBoxContainer" unique_id=1791522948]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+item_0/text = "Hello"
+item_0/icon = ExtResource("1_nkvuk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=690674622]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer" unique_id=937596153]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=37824304]
+layout_mode = 2
+text = "Load directory"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
