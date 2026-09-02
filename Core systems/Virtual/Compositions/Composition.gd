@@ -1,9 +1,9 @@
 class_name Composition 
 extends Resource
 
-@export var nodules: Array[Script]
+@export var nodules: Array[GraphNodule]
 @export var wires: Array[Wire]
-
+@export var other: Array[GraphObject]
 
 func find_connected_ports(origin_address: PortAddress) -> Array[PortAddress]:
 	var target_ports: Array = []

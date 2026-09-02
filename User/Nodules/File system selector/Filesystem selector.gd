@@ -8,7 +8,7 @@ static func setup(ports: Ports, _widget: Widget) -> void:
 	var path: LineEdit
 	ports.open_input("Directory", TYPE_STRING)
 	ports.open_output("Files", TYPE_PACKED_STRING_ARRAY)
-	ports.create_ui_emitter(1, button, &"pressed", path.text)
+	ports.create_ui_emitter(1, button, &"pressed", 0)
 	
 static func function(packet: Packet) -> void:
 	pass

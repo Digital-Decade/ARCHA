@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_5x0fp")
 drawer_container = NodePath("VBoxContainer/Content area/Drawer container")
 composition = ExtResource("2_uwlye")
+metadata/_edit_vertical_guides_ = [-3.0]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656339549]
 layout_mode = 1
@@ -29,8 +30,34 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/Content area" unique_id=1204010321]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Content area" unique_id=1874598183]
 layout_mode = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/Content area/VBoxContainer" unique_id=1204010321]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_offset = Vector2(0, -23)
+
+[node name="GraphNode" type="GraphNode" parent="VBoxContainer/Content area/VBoxContainer/GraphEdit" unique_id=213901512]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 123.0
+offset_right = 148.0
+offset_bottom = 178.0
+mouse_filter = 1
+position_offset = Vector2(100, 100)
+title = "Hello"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Content area/VBoxContainer" unique_id=317579536]
+layout_mode = 2
+
+[node name="Add nodule" type="Button" parent="VBoxContainer/Content area/VBoxContainer/HBoxContainer" unique_id=2020620011]
+layout_mode = 2
+text = "Add nodule"
+
+[node name="Load composition" type="Button" parent="VBoxContainer/Content area/VBoxContainer/HBoxContainer" unique_id=161652596]
+layout_mode = 2
+text = "Load composition"
 
 [node name="Drawer container" type="PanelContainer" parent="VBoxContainer/Content area" unique_id=113987348]
 layout_mode = 2

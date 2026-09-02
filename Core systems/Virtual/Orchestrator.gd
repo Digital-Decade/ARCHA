@@ -7,19 +7,21 @@ var nodule_ports_and_internal_wires: Dictionary = {}
 var hacky_scope_enforcer := []
 
 
-func initialize_composition(composition: Composition, drawer: Drawer):
+func initialize_composition(composition: Composition, drawer: Drawer, graph: GraphManager):
 	var index := 0
-	for nodule_script in composition.nodules:
+	for nodule in composition.nodules:
 		var ports := Ports.new()
 		var widget := Widget.new()
-		nodule_script.setup(ports, widget)
+		nodule.nodule_script.setup(ports, widget)
 		drawer.add_widget(widget, index)
+		graph.add_nodule("dummy", ports, index)
 		
 		for wire in ports._ui_emitters_wires:
 			var nodule_address := NoduleAddress.new(composition, index)
 			create_ui_bridge(nodule_address, wire)
-		nodule_ports_and_internal_wires.set(nodule_script, ports)
+		nodule_ports_and_internal_wires.set(nodule.nodule_script, ports)
 		index += 1
+	graph.read_composition(composition)
 
 
 
