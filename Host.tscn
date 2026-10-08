@@ -36,14 +36,13 @@ layout_mode = 2
 [node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/Content area/VBoxContainer" unique_id=1204010321]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_offset = Vector2(0, -23)
 
 [node name="GraphNode" type="GraphNode" parent="VBoxContainer/Content area/VBoxContainer/GraphEdit" unique_id=213901512]
 layout_mode = 1
 offset_left = 100.0
-offset_top = 123.0
+offset_top = 100.0
 offset_right = 148.0
-offset_bottom = 178.0
+offset_bottom = 155.0
 mouse_filter = 1
 position_offset = Vector2(100, 100)
 title = "Hello"
