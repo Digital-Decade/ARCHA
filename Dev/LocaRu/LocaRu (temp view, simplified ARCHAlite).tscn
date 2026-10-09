@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://15odehy8dle4"]
+
+[node name="LocaRu root" type="Control" unique_id=2128968703]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=240808954]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="HSplitContainer" unique_id=2121122271]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="HSplitContainer" unique_id=1413726606]
+layout_mode = 2

@@ -1,5 +1,5 @@
-class_name NoduleAddress
 extends Resource
+class_name NoduleAddress
 
 @export var _composition: Composition
 @export var _nodule_id: int

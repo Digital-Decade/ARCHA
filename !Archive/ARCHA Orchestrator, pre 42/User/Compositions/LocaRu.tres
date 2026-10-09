@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Composition" format=3 uid="uid://jw1bwbdhlgx6"]
 
-[ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://Core systems/Virtual/Compositions/Composition.gd" id="1_b04po"]
-[ext_resource type="Script" uid="uid://vb55fd6d06wu" path="res://User/Nodules/Item list.gd" id="1_g5mk4"]
-[ext_resource type="Script" uid="uid://dym558ejt4hca" path="res://Core systems/Virtual/Compositions/Comp nodule.gd" id="1_t4k6i"]
-[ext_resource type="Script" uid="uid://cyibm6pa80ulw" path="res://User/Nodules/Text viewer.gd" id="2_5fbwy"]
-[ext_resource type="Script" uid="uid://c2qano8d7v7o7" path="res://Core systems/Virtual/Compositions/Wire.gd" id="2_558i1"]
-[ext_resource type="Script" uid="uid://mcaic67jrfjg" path="res://User/Nodules/Text input.gd" id="3_5fbwy"]
-[ext_resource type="Script" uid="uid://dxncn504etbox" path="res://Core systems/Virtual/Compositions/Comp object.gd" id="3_yav5m"]
-[ext_resource type="Script" uid="uid://dw5kuhkajfm18" path="res://Core systems/Virtual/Compositions/Port address.gd" id="6_t4k6i"]
+[ext_resource type="Script" uid="uid://c38d13llfan2p" path="res://!Archive/ARCHA Orchestrator, pre 42/Core systems/Logic engine/Compositions/Composition.gd" id="1_b04po"]
+[ext_resource type="Script" uid="uid://vb55fd6d06wu" path="res://!Archive/ARCHA Orchestrator, pre 42/User/Nodules/Item list.gd" id="1_g5mk4"]
+[ext_resource type="Script" uid="uid://dym558ejt4hca" path="res://!Archive/ARCHA Orchestrator, pre 42/Core systems/Logic engine/Compositions/Comp nodule.gd" id="1_t4k6i"]
+[ext_resource type="Script" uid="uid://cyibm6pa80ulw" path="res://!Archive/ARCHA Orchestrator, pre 42/User/Nodules/Text viewer.gd" id="2_5fbwy"]
+[ext_resource type="Script" uid="uid://c2qano8d7v7o7" path="res://!Archive/ARCHA Orchestrator, pre 42/Core systems/Logic engine/Compositions/Wire.gd" id="2_558i1"]
+[ext_resource type="Script" uid="uid://mcaic67jrfjg" path="res://!Archive/ARCHA Orchestrator, pre 42/User/Nodules/Text input.gd" id="3_5fbwy"]
+[ext_resource type="Script" uid="uid://dxncn504etbox" path="res://!Archive/ARCHA Orchestrator, pre 42/Core systems/Logic engine/Compositions/Comp object.gd" id="3_yav5m"]
+[ext_resource type="Script" uid="uid://dw5kuhkajfm18" path="res://!Archive/ARCHA Orchestrator, pre 42/Core systems/Logic engine/Compositions/Port address.gd" id="6_t4k6i"]
 
 [sub_resource type="Resource" id="Resource_fej6a"]
 script = ExtResource("1_t4k6i")

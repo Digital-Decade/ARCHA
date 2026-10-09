@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dne41w5vgr05d"]
+[gd_scene format=3 uid="uid://c1kwtrhmxrpdd"]
 
-[node name="Drawer" type="Control" unique_id=540959933]
+[node name="LocaRuControls" type="Control" unique_id=1072093421]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
